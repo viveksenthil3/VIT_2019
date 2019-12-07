@@ -1,0 +1,29 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopy</title>
+    <!--Materialize.css-->
+    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
+    <!--Google material icons-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--Style.css-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    {% include 'nav.html' %}
+    <div class="container main">
+        {% block main %}
+        {% endblock %}
+
+    </div>
+
+
+    <!--Materialize.js-->
+    <script src="{% static 'js/materialize.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
