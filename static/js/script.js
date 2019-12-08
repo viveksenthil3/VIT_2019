@@ -35,39 +35,7 @@ let sendPOST = (url, dic, fun)=>{
 //To initialize the sidenav in mobile view
 document.addEventListener("DOMContentLoaded", ()=>{
     let SideNav = document.getElementsByClassName("sidenav")[0];
-    M.Sidenav.init(SideNav, {edge: 'right'})
-
-//    To insert Products
-
-    let createCards=res=>{
-        res['pdts'].forEach( pdt=>{
-            console.log(HOST+pdt['imgURL']);
-            let pdtList = document.getElementById('product-list');
-            let imgURL = HOST+pdt['imgURL'];
-            let title = pdt['pdt-title'];
-            let content = pdt['pdt-content'];
-            pdtList.innerHTML += `
-                <div class="col s12 m4">
-                    <div class="card card-css">
-                        <div class="card-image">
-                            <img src="${imgURL}" alt="${title}">
-                            <a href="" class="btn-floating  halfway-fab waves-effect green"><i class="material-icons">shopping_cart</i></a>
-                        </div>
-                        <div class="card-content">
-                            <p>${content}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-        });
-//            console.log(res['pdts'][0]['imgURL']);
-
-    };
-    let response = sendPOST(`${HOST}Ecom/pdts/`, {'pdts':'?'}, createCards);
-//    console.log(response);
-
-
+    M.Sidenav.init(SideNav, {edge: 'right'});
 });
 
 

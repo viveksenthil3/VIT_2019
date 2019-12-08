@@ -23,24 +23,44 @@ def pdt_json(request):
                     {
                         'imgURL': 'static/img/mobile.jpeg',
                         'pdt-title': 'Mobile',
-                        'pdt-content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.'
+                        'pdt-content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.',
+                        'price': '12000'
                     },
                     {
                         'imgURL': 'static/img/beds.jpeg',
                         'pdt-title': 'Beds',
-                        'pdt-content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.'
+                        'pdt-content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.',
+                        'price': '25000'
                     },
                     {
                         'imgURL': 'static/img/women.jpeg',
-                        'pdt-title': 'Women',
-                        'pdt-content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.'
+                        'pdt-title': "Women's fashion",
+                        'pdt-content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.',
+                        'price': '1500'
                     },
                     {
                         'imgURL': 'static/img/men.jpeg',
-                        'pdt-title': 'Men',
-                        'pdt-content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.'
+                        'pdt-title': "Men's fashion",
+                        'pdt-content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.',
+                        'price': '1250'
                     }
                 ]
             }
 
             return JsonResponse(dic)
+        
+        
+def cart(request):
+    if request.method == 'GET':
+        imgURL = request.GET.get('imgURL');
+        title =  request.GET.get('title');
+        content = request.GET.get('content');
+        price = request.GET.get('price');
+
+        context = {
+            'imgURL': imgURL,
+            'title': title,
+            'content': content,
+            'price': price
+        }
+        return render(request, 'cart.html', context)

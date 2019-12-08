@@ -72,3 +72,36 @@
         <!--</div>-->
     </div>
 {% endblock %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded", ()=>{
+            //    To insert Products
+
+            let createCards=res=>{
+                res['pdts'].forEach( pdt=>{
+                    console.log(HOST+pdt['imgURL']);
+                    let pdtList = document.getElementById('product-list');
+                    let imgURL = HOST+pdt['imgURL'];
+                    let title = pdt['pdt-title'];
+                    let content = pdt['pdt-content'];
+                    let sendURL = `Ecom/cart/?imgURL=${pdt['imgURL']}&title=${pdt['pdt-title']}&content=${pdt['pdt-content']}&price=${pdt['price']}`;
+                    pdtList.innerHTML += `
+                        <div class="col s12 m4">
+                            <div class="card card-css">
+                                <div class="card-image">
+                                    <img src="${imgURL}" alt="${title}">
+                                    <a href="${HOST+sendURL}" class="btn-floating halfway-fab waves-effect green"><i class="material-icons">shopping_cart</i></a>
+                                </div>
+                                <div class="card-content">
+                                    <p>${content}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            };
+            let response = sendPOST(`${HOST}Ecom/pdts/`, {'pdts':'?'}, createCards);
+        });
+    </script>
+{% endblock %}

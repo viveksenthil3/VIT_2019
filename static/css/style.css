@@ -6,10 +6,26 @@
 }
 
 .main{
-    padding-top:10%;
+    padding-top:8vh;
 }
 
 .card-css{
     border-radius: 1em 1em 0 0;
 }
 
+.cart-img{
+    object-fit: contain;
+}
+
+.cart-row-css{
+    padding: 0 1em 0  0;
+}
+
+.cart-pdt-details{
+    margin:0 0 .5em 0;
+}
+
+.price{
+    font-weight: bold;
+    margin-left: 2em;
+}
