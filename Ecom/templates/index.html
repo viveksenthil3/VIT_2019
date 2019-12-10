@@ -101,7 +101,8 @@
                     `;
                 });
             };
-            let response = sendPOST(`${HOST}Ecom/pdts/`, {'pdts':'?'}, createCards);
+            let response = sendPOST(`${HOST}Ecom/pdts/`, 'pdts=?', createCards);
+            <!--{'pdts':'?'}-->
         });
     </script>
 {% endblock %}

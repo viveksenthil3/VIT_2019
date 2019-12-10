@@ -2,6 +2,7 @@ import json
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+import urllib.parse
 
 from VIT_2019 import settings
 
@@ -13,10 +14,19 @@ def home(request):
 def pdt_json(request):
     print("in")
     if request.method == 'POST':
-        print(request.body)
-        j = json.loads(request.body)
-        print(j['pdts'])
-        if j['pdts']=='?':
+        res = None
+
+        #To identify the request format and parse accordingly
+        if request.headers['Content-Type'] == "application/x-www-form-urlencoded":
+            j = urllib.parse.parse_qs(request.body.decode('utf-8'))
+            res = j['pdts'][0]
+
+        # elif request.headers['Content-Type'] == "application/json":
+        #     j = json.loads(request.body)
+        #     res = j['pdts']
+
+
+        if res =='?':
             print("got you")
             dic = {
                 'pdts':[
@@ -64,3 +74,26 @@ def cart(request):
             'price': price
         }
         return render(request, 'cart.html', context)
+
+
+@csrf_exempt
+def register(request):
+    if request.method == 'POST':
+        res = None
+
+        # To identify the request format and parse accordingly
+        if request.headers['Content-Type'] == "application/x-www-form-urlencoded":
+            j = urllib.parse.parse_qs(request.body.decode('utf-8'))
+
+            print(j)
+            # res = j['pdts'][0]
+
+            j['name'][0] += ' Success'
+            js = {
+                'name': j['name'][0],
+                'phone': j['phone'][0],
+                'location': j['location'][0]
+            }
+
+            return JsonResponse(js)
+

@@ -18,7 +18,7 @@ let sendPOST = (url, dic, fun)=>{
     let xhr = new XMLHttpRequest();
     let response = false;
     xhr.open("POST", url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-CSRFToken', getFromCookie('csrftoken'));
 
 
@@ -29,7 +29,7 @@ let sendPOST = (url, dic, fun)=>{
             }
     };
 
-    xhr.send(JSON.stringify(dic));
+    xhr.send(dic);//JSON.stringify(dic));
 };
 
 //To initialize the sidenav in mobile view
