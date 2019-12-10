@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static from static %}
+
+{% block main %}
+<h4>Details</h4>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" id="checkout_btn" class="btn waves-effect green" value="Check Out">
+</form>
+{% endblock %}

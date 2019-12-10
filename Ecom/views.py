@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import urllib.parse
 
+from .forms import CustomerRegisterationForm
 from VIT_2019 import settings
 
 def home(request):
@@ -77,7 +78,7 @@ def cart(request):
 
 
 @csrf_exempt
-def register(request):
+def register_from_mob(request):
     if request.method == 'POST':
         res = None
 
@@ -97,3 +98,12 @@ def register(request):
 
             return JsonResponse(js)
 
+
+def register_from_web(request):
+    form = CustomerRegisterationForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        form = CustomerRegisterationForm()
+
+    return render(request, 'checkout.html', {'form':form})

@@ -21,10 +21,18 @@
                            &#8377; {{ price }}
                         </span>
 
-                        <a href="" class="btn waves-effect green right">Proceed</a>
+                        <a href="" id="proceed_btn" class="btn waves-effect green right">Proceed</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        let proceed_btn = document.getElementById("proceed_btn");
+        proceed_btn.href = HOST + "Ecom/checkout/";
+    </script>
 {% endblock %}
