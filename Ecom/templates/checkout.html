@@ -9,4 +9,22 @@
 
     <input type="submit" id="checkout_btn" class="btn waves-effect green" value="Check Out">
 </form>
+
 {% endblock %}
+
+
+{% block scripts %}
+    {% if status == 0%}
+        <script>
+            M.toast({html: 'Welcome Back :-)'})
+        </script>
+    {% endif %}
+
+
+    <script>
+        setTimeout(()=>{
+        M.toast({html: 'Your order is placed :-)'})
+        }, 500);
+    </script>
+
+{% endblock%}

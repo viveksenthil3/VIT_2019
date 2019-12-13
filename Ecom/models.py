@@ -9,3 +9,4 @@ class customer_data(models.Model):
     name = models.CharField(max_length=50)
     phone = PhoneNumberField()
     location = models.CharField(max_length=100)
+

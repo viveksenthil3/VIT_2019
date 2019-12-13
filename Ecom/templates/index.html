@@ -2,80 +2,46 @@
 {% load static from static %}
 
 {% block main %}
+    <div class="carousel">
+            <!--<h5>{{imgs}}</h5>-->
+            <a class="carousel-item" href="#one!"><img clas="slider_img" src="http://127.0.0.1:8000/{{ imgs.0 }}" alt=""></a>
+            <a class="carousel-item" href="#two!"><img clas="slider_img" src="http://127.0.0.1:8000/{{ imgs.1 }}" alt=""></a>
+            <a class="carousel-item" href="#three!"><img clas="slider_img" src="http://127.0.0.1:8000/{{ imgs.2 }}" alt=""></a>
+            <a class="carousel-item" href="#four!"><img clas="slider_img" src="http://127.0.0.1:8000/{{ imgs.3 }}" alt=""></a>
+
+    </div>
 
     <h3>Products</h3>
     <div class="divider"></div>
     <br>
     <div id="product-list" class="row">
-        <!--<div class="col s12 m4">-->
-            <!--<div class="card card-css">-->
-                <!--<div class="card-image">-->
-                    <!--<img src="{% static 'img/mobile.jpeg' %}" alt="Mobile">-->
-                    <!--<a href="" class="btn-floating  halfway-fab waves-effect green"><i class="material-icons">shopping_cart</i></a>-->
-                <!--</div>-->
-                <!--<div class="card-content">-->
-                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.</p>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
 
-        <!--<div class="col s12 m4">-->
-            <!--<div class="card">-->
-                <!--<div class="card-image">-->
-                    <!--<img src="{% static 'img/mobile.jpeg' %}" alt="Mobile">-->
-                    <!--&lt;!&ndash;<span class="card-title">Mobile</span>&ndash;&gt;-->
-                    <!--<a href="" class="btn-floating halfway-fab waves-effect green"><i class="material-icons">shopping_cart</i></a>-->
-                <!--</div>-->
-                <!--<div class="card-content">-->
-                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.</p>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="col s12 m4">-->
-            <!--<div class="card">-->
-                <!--<div class="card-image">-->
-                    <!--<img src="{% static 'img/mobile.jpeg' %}" alt="Mobile">-->
-                    <!--&lt;!&ndash;<span class="card-title">Mobile</span>&ndash;&gt;-->
-                    <!--<a href="" class="btn-floating halfway-fab waves-effect green"><i class="material-icons">shopping_cart</i></a>-->
-                <!--</div>-->
-                <!--<div class="card-content">-->
-                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.</p>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="col s12 m4">-->
-            <!--<div class="card">-->
-                <!--<div class="card-image">-->
-                    <!--<img src="{% static 'img/mobile.jpeg' %}" alt="Mobile">-->
-                    <!--&lt;!&ndash;<span class="card-title">Mobile</span>&ndash;&gt;-->
-                    <!--<a href="" class="btn-floating halfway-fab waves-effect green"><i class="material-icons">shopping_cart</i></a>-->
-                <!--</div>-->
-                <!--<div class="card-content">-->
-                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.</p>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="col s12 m4">-->
-            <!--<div class="card">-->
-                <!--<div class="card-image">-->
-                    <!--<img src="{% static 'img/mobile.jpeg' %}" alt="Mobile">-->
-                    <!--&lt;!&ndash;<span class="card-title">Mobile</span>&ndash;&gt;-->
-                    <!--<a href="" class="btn-floating halfway-fab waves-effect green"><i class="material-icons">shopping_cart</i></a>-->
-                <!--</div>-->
-                <!--<div class="card-content">-->
-                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nemo placeat ratione repudiandae.</p>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
 {% endblock %}
 
 {% block scripts %}
     <script>
         document.addEventListener("DOMContentLoaded", ()=>{
+
+            let slider_img = document.getElementsByClassName('slider_img');
+            for (let img in slider_img){
+                let href = HOST + img.href;
+                img.href = href;
+            }
+
+            var elems = document.querySelectorAll('.carousel');
+            console.log(elems);
+            console.log("in");
+            let options = {
+                fullWidth: false,
+                indicators: true,
+                duration: 50
+            }
+            var instances = M.Carousel.init(elems, options);
+            <!--let instance = M.Carousel.getInstance(elems);-->
+            <!--console.log(instance);-->
+            <!--instance.next(3);-->
+
             //    To insert Products
 
             let createCards=res=>{
