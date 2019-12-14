@@ -1,2 +1,4 @@
 django-phonenumber-field
 phonenumbers
+PyDrive3
+pyqrcode

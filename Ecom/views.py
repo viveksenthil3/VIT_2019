@@ -3,10 +3,14 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import urllib.parse
+# from pydrive.auth import GoogleAuth
+# from pydrive.drive import GoogleDrive
+import os
 
 import pyqrcode
 # import pypng
 from django.conf import settings
+import requests
 
 from .forms import CustomerRegisterationForm
 from .models import customer_data
@@ -128,8 +132,8 @@ def register_from_mob(request):
 
 def register_from_web(request):
     form = CustomerRegisterationForm(request.POST or None)
-    print(request.POST.get('phone'))
-
+    # print(request.POST.get('phone'))
+    status = False
     if form.is_valid():
         status = 0
         query = customer_data.objects.filter(phone='+91'+request.POST.get('phone'))
@@ -149,3 +153,41 @@ def qr_generate(request):
         url.png(path+no+".png", scale=8)
         return JsonResponse({'qrUrl': '/static/QRCodes/'+no+'.png'})
         # print()
+
+@csrf_exempt
+def sms(request):
+    if request.method == 'POST':
+        if request.POST.get('pass') == 'pass':
+            url = "https://www.fast2sms.com/dev/bulk"
+            payload = "sender_id=FSTSMS&message={}&language=english&route=p&numbers=8667619406".format('come in')
+            headers = {
+                'authorization': "rNylIJvSoiB2QkFe3K8t1gDcPWxu4GfpCRzmZLwqM9X6H7UTbsaI2h0jX3uGnB9RQvr4o65NOmYUfWyZ",
+                'Content-Type': "application/x-www-form-urlencoded",
+                'Cache-Control': "no-cache",
+            }
+            # response = requests.request("POST", url, data=payload, headers=headers)
+            print(payload)
+
+
+def drive(request):
+    # g_login = GoogleAuth()
+    # g_login.LocalWebserverAuth()
+    # drive = GoogleDrive(g_login)
+    #
+    # with open(settings.BASE_DIR+'\static\QRCodes\8190031369.png', 'r') as file:
+    #     file_drive = drive.CreateFile({'title':'8190031369.png'})
+    #     file_drive.SetContentString(file.read())
+    #     file_drive.Upload()
+    return render(request, 'sms.html')
+
+
+def home_1(request):
+    return render(request, 'home1.html')
+
+
+def home_2(request):
+    return render(request, 'home2.html')
+
+
+def home_3(request):
+    return render(request, 'home3.html')
